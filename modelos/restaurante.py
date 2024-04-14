@@ -35,7 +35,7 @@ class Restaurante:
 
     def receber_avaliacao(self, cliente, nota):
         '''Funcao para receber e armazenar a nota do cliente'''
-        if 0 <= nota <= 5:
+        if 0 < nota <= 5:
             avaliacao = Avaliacao(cliente, nota)
             self._avaliacao.append(avaliacao)
 
@@ -55,19 +55,13 @@ class Restaurante:
         
     @property
     def exibir_cardapio(self):
-        print(f'Aqui esta o cardapio do restaurante {self._nome}\n')
-        for i, item in enumerate(self._cardapio, start=1): 
-            if hasattr(item, 'descricao'):
-                '''Se tiver o atributo descricao, sera um prato, se nao, sera bebida'''
-                mensagem_prato = f'{i}. Nome:{item._nome} | Preço: R${item._preco} | Descrição: {item.descricao}\n'
+        '''Funcao para exibir o cardapio, faz a distincao de prato e bebida analisando os atributos,
+        se houver o atributo <descricao>, sera um prato, senao, sera uma bebida)'''
+        print(f'Cardapio do restaurante {self._nome}\n')
+        for i,item in enumerate(self._cardapio,start=1):
+            if hasattr(item,'descricao'):
+                mensagem_prato = f'{i}. Nome: {item._nome} | Preço: R${item._preco} | Descrição: {item.descricao}'
                 print(mensagem_prato)
             else:
-                mensagem_bebida = f'{i}. Nome:{item._nome} | Preço: R${item._preco} | Tamanho: {item.tamanho}\n'
+                mensagem_bebida = f'{i}. Nome: {item._nome} | Preço: R${item._preco} | Tamanho: {item.tamanho}'
                 print(mensagem_bebida)
-               
-
-
-
-
-
-
